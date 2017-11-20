@@ -1,4 +1,4 @@
-# Group XXX
+# Group 15
 
 ## 題目
 
@@ -16,12 +16,14 @@
 
 之前有作業是模擬圓周運動的，想利用此基礎對更深入的題目探討
 
+
 ## 方法
 
 在拉塞福原子行星模型中，電子繞原子做圓周運動。
 
 然而原中運動時電子在投影面上會有加速度，進而生電磁波，
 有能量釋放，最終會墜毀在原子核中。
+
 
 ## 時程
 
@@ -42,9 +44,9 @@
 
 ## 參考資料
 
- 1. https://en.wikipedia.org/wiki/Rutherford_model - automatic!
+ 1. https://en.wikipedia.org/wiki/Rutherford_model
 
- 2. https://en.wikipedia.org/wiki/Electromagnetic_radiation - automatic!
+ 2. https://en.wikipedia.org/wiki/Electromagnetic_radiation
  
 
 
