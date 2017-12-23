@@ -47,6 +47,10 @@
  1. https://en.wikipedia.org/wiki/Rutherford_model
 
  2. https://en.wikipedia.org/wiki/Electromagnetic_radiation
+
+ 3. https://zh.wikipedia.org/wiki/拉莫爾方程式
+
+ 4. https://zh.wikipedia.org/wiki/同步辐射
  
 
 
