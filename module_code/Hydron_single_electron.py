@@ -1,11 +1,16 @@
 from vpython import *
+import numpy as np
 
 '''
 using larmor formula to caculate the deltaR in each deltaT
-due to the long time, we let deltaR = deltaR * 5000 
+due to the long time, we let deltaR = deltaR * 10000 
 '''
 
 scene=canvas(width=800,height=800,background=color.black)
+g=graph(xtitle='t(s)', ytitle='R(m)',background=color.black)
+gRtoT=gcurve(graph=g,color=color.white)
+gg=g=graph(xtitle='theta', ytitle='R(m)',background=color.black)
+gRtoTheta=gcurve(graph=g,color=color.white)
 
 eV=1.6021766208e-19
 k=8.9875517873681764e9
@@ -26,8 +31,8 @@ class electron(object):
 		self.s.pos+=self.p/self.m *dt
 
 	def emmit(self,_qcenter,dt):
-		dr = self.q**4 *dt / (12* pi**2 * c**3 * e0**2 * self.m**2 * mag(self.s.pos)**2)
-		dr*=5000
+		dr = self.q**4 *dt / (12* pi**2 * c**3 * e0**2 * 2 * self.m**2 * mag(self.s.pos)**2)
+		dr*=10000
 		self.s.pos = (mag(self.s.pos)-dr)*norm(self.s.pos)
 
 class proton(object):
@@ -41,9 +46,20 @@ e1=electron(vec(r["s1"],0,0),color.white,p1.q)
 
 dt=0.5*1e-19
 t=0
+pre=-1
+cnt=-1
 
 while mag(e1.s.pos)>2*1e-12:
 	rate(1000)
 	e1.emmit(p1.q,dt)
 	e1.update(p1.q,dt)
 	t+=dt
+	gRtoT.plot([t,mag(e1.s.pos)])
+	theta=np.arctan2(e1.s.pos.y,e1.s.pos.x)
+	if(pre<0 and theta >=0):
+		cnt+=1
+	pre=theta
+	if theta<0:
+		theta+=2*pi
+	gRtoTheta.plot([theta+cnt*2*pi,mag(e1.s.pos)])
+print(t*10000)

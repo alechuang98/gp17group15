@@ -2,7 +2,7 @@ from vpython import *
 from random import random
 '''
 using larmor formula to caculate the deltaR in each deltaT
-due to the long time, we let deltaR = deltaR * 5000 
+due to the long time, we let deltaR = deltaR * 10000
 '''
 
 scene=canvas(width=800,height=800,background=color.black)
@@ -28,8 +28,8 @@ class electron(object):
 		self.s.pos+=self.p/self.m *dt
 
 	def emmit(self,_qcenter,dt):
-		dr = self.q**4 *dt / (12* pi**2 * c**3 * e0**2 * self.m**2 * mag(self.s.pos)**2)
-		dr*=5000
+		dr = self.q**4 *dt / (12* pi**2 * c**3 * e0**2 * 2 * self.m**2 * mag(self.s.pos)**2)
+		dr*=10000
 		self.s.pos = (mag(self.s.pos)-dr)*norm(self.s.pos)
 
 class proton(object):
