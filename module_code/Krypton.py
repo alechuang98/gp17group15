@@ -17,13 +17,20 @@ e0=8.854187817e-12
 r={"s1": 5.2917721067e-11/36}
 
 class electron(object):
-	def __init__(self,_pos,_color,_qcenter,_angle):
-		self.s=sphere(radius=0.25e-12*2,pos=_pos,color=_color,make_trail=False,interval=10,retain=10)
+	def __init__(self,_pos,_color,_qcenter,_arg):
+		self.s=sphere(radius=0.25e-12*2,pos=_pos,color=_color,make_trail=False,interval=10)
 		self.q=-eV
 		self.m=9.10938356e-31
-		a=_pos.x
-		b=_pos.y
-		self.p=vec(-b/sqrt(a**2+b**2)*sin(angle),a/sqrt(a**2+b**2)*sin(angle),cos(angle))*sqrt(-k*_qcenter*-eV/(self.m*mag(_pos)))*self.m
+		x=_pos.x
+		y=_pos.y
+		z=_pos.z
+		S=sin(_arg)
+		C=cos(_arg)
+		self.p=vec(0,0,0)
+		self.p.x=(-y*S-z*C)/sqrt((y*S+z*C)**2+x**2)
+		self.p.y=x*S/sqrt((y*S+z*C)**2+x**2)
+		self.p.z=x*C/sqrt((y*S+z*C)**2+x**2)
+		self.p*=sqrt(-k*_qcenter*-eV/(self.m*mag(_pos)))*self.m
 
 	def update(self,_qcenter,dt):
 		self.p+=k*_qcenter*self.q/mag(self.s.pos)**2 *norm(self.s.pos)*dt
@@ -44,17 +51,17 @@ p1=proton(vec(249/256,38/256,114/256),36)
 
 e=[]
 for i in range(2):
-	angle=random()*2*pi
-	e.append(electron(vec(r["s1"]*cos(angle),r["s1"]*sin(angle),0),vec(174/256,129/256,255/256),p1.q,random()*2*pi))
+	randpos=norm(vec(random()-0.5,random()-0.5,random()-0.5))*r["s1"]
+	e.append(electron(randpos,vec(174/256,129/256,255/256),p1.q,random()*2*pi))
 for i in range(8):
-	angle=random()*2*pi
-	e.append(electron(vec(r["s1"]*4*cos(angle),r["s1"]*4*sin(angle),0),vec(102/256,217/256,239/256),p1.q,random()*2*pi))
+	randpos=norm(vec(random()-0.5,random()-0.5,random()-0.5))*r["s1"]*4
+	e.append(electron(randpos,vec(102/256,217/256,239/256),p1.q,random()*2*pi))
 for i in range(18):
-	angle=random()*2*pi
-	e.append(electron(vec(r["s1"]*9*cos(angle),r["s1"]*9*sin(angle),0),vec(166/256,226/256,42/256),p1.q,random()*2*pi))
+	randpos=norm(vec(random()-0.5,random()-0.5,random()-0.5))*r["s1"]*9
+	e.append(electron(randpos,vec(166/256,226/256,42/256),p1.q,random()*2*pi))
 for i in range(8):
-	angle=random()*2*pi
-	e.append(electron(vec(r["s1"]*16*cos(angle),r["s1"]*16*sin(angle),0),vec(253/256,151/256,31/256),p1.q,random()*2*pi))
+	randpos=norm(vec(random()-0.5,random()-0.5,random()-0.5))*r["s1"]*16
+	e.append(electron(randpos,vec(253/256,151/256,31/256),p1.q,random()*2*pi))
 
 g1=gcurve(graph=g,color=e[0].s.color)
 g2=gcurve(graph=g,color=e[2].s.color)
