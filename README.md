@@ -47,7 +47,18 @@
  1. https://en.wikipedia.org/wiki/Rutherford_model
 
  2. https://en.wikipedia.org/wiki/Electromagnetic_radiation
- 
+
+
+## 評語
+
+  1. 請定義你的符號
+
+  2. 請用流程圖或關係圖來解釋程式
+
+  3. 模擬效果良好
+
+  4. 缺乏了對相關數據的蒐集與分析
+
 
 
 ## 注意事項
